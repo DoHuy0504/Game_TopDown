@@ -5,10 +5,9 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, IGetHit
 {
 
-    float _HP = 100;
-    float _armor = 0;
-
-    float _baseDmg = 30;
+    [SerializeField] float _HP = 100;
+    [SerializeField] float _armor = 0;
+    [SerializeField] float _baseDmg = 20;
 
     Rigidbody2D _rigi;
     Transform _player;
@@ -20,14 +19,11 @@ public class EnemyController : MonoBehaviour, IGetHit
     [SerializeField] float _detectTargetRadius;
     GameManager gameM;
 
-
     // Start is called before the first frame update
     void Awake()
     {
         _rigi = this.GetComponent<Rigidbody2D>();
         this.gameM = GameManager.Instant;
-
-
     }
 
     public void Init()
@@ -59,7 +55,6 @@ public class EnemyController : MonoBehaviour, IGetHit
                 _player = null;
         }
     }
-
     private void FixedUpdate()
     {
         this._rigi.velocity = this.transform.up * _speed * _movement;
@@ -71,7 +66,6 @@ public class EnemyController : MonoBehaviour, IGetHit
         {
             return true;
         }
-
         Vector2 dir = _player.position - this.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir, dir.magnitude, _layerMask);
         if (hit.collider == null)
@@ -94,11 +88,8 @@ public class EnemyController : MonoBehaviour, IGetHit
             _movement = Vector2.zero;
             return;
         }
-
         Vector2 dir = _player.position - this.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-
-
         Quaternion q = this.transform.rotation;
         q.eulerAngles = new Vector3(0, 0, angle);
 
@@ -106,8 +97,6 @@ public class EnemyController : MonoBehaviour, IGetHit
 
         _movement = Vector2.one;
     }
-
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
@@ -119,7 +108,7 @@ public class EnemyController : MonoBehaviour, IGetHit
         if (dmg - _armor > 0)
             this._HP -= (dmg - _armor);
 
-        if (this._HP < 0)
+        if (this._HP <= 0)
         {
             this.gameObject.SetActive(false);
             this.gameM._kill++;
@@ -133,8 +122,6 @@ public class EnemyController : MonoBehaviour, IGetHit
 
         if (isCanGetHit == null)
             return;
-
         isCanGetHit.GetHit(_baseDmg);
     }
-
 }

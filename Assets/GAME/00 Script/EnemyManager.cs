@@ -28,28 +28,21 @@ public class EnemyManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_timer);
-
             Spawn();
         }
-
     }
-
     void Spawn()
     {
-
         Collider2D[] collider2Ds;
         Vector2 pos;
         do
         {
-
             pos = _player.transform.position;
             pos.x += Random.Range(-5f, 5f);
             pos.y += Random.Range(-5f, 5f);
 
             collider2Ds = Physics2D.OverlapCircleAll(pos, 0.25f);
         } while (collider2Ds.Length > 0);
-
-
         EnemyController e = ObjectPooling.Instant.Getcomp(_enemyPrefab);
         e.transform.position = pos;
         e.Init();
@@ -62,8 +55,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (routineRepeatSpawn != null)
             StopCoroutine(routineRepeatSpawn);
-
-
     }
 
     private void OnDestroy()

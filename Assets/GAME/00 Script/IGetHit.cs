@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IGetHit
 {
-
     public void GetHit(float dmg);
 }

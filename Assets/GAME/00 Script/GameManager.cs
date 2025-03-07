@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     {
         _instant = this;
     }
-
     void Init()
     {
         _player.Init();
@@ -25,7 +24,6 @@ public class GameManager : MonoBehaviour
     {
         Init();
     }
-
     // Update is called once per frame
     void Update()
     {

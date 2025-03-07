@@ -10,8 +10,6 @@ public class ObjectPooling : MonoBehaviour
     //pooling
     Dictionary<GameObject, List<GameObject>> _pool = new Dictionary<GameObject, List<GameObject>>();
 
-
-
     private void Awake()
     {
         _instant = this;
@@ -26,17 +24,14 @@ public class ObjectPooling : MonoBehaviour
         {
             _pool.Add(prefab, listObj);
         }
-
         foreach (GameObject g in listObj)
         {
             if (g.activeSelf)
                 continue;
             return g;
         }
-
         GameObject g2 = Instantiate(prefab, this.transform.position, Quaternion.identity);
         listObj.Add(g2);
-
         return g2;
     }
 

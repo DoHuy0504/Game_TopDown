@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IGetHit
 {
-    float _HP = 100;
-    float _armor = 10;
+    [SerializeField] float _HP = 100;
+    [SerializeField] float _armor = 10;
 
-    [SerializeField] Image _hpBar;
+    //[SerializeField] Image _hpBar;
 
     Rigidbody2D _rigi;
     [SerializeField] float _speed, _speedRotate, _coolDownTime;
@@ -23,8 +23,6 @@ public class PlayerController : MonoBehaviour, IGetHit
     void Start()
     {
         _rigi = this.GetComponent<Rigidbody2D>();
-
-
     }
 
     public void Init()
@@ -72,18 +70,19 @@ public class PlayerController : MonoBehaviour, IGetHit
     {
         _movement.x = Input.GetAxisRaw("Horizontal");
         _movement.y = Input.GetAxisRaw("Vertical");
-
-
     }
 
     public void GetHit(float dmg)
     {
         if (dmg - _armor > 0)
+        {
             this._HP -= (dmg - _armor);
+        }
 
-        if (this._HP < 0)
+        if (this._HP <= 0)
+        {
             SceneManager.LoadScene(0);
+        }      
     }
-
 
 }
