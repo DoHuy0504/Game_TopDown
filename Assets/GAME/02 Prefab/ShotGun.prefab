@@ -48,6 +48,6 @@ MonoBehaviour:
   _bulletSpeed: 10
   _bulletDamage: 50
   _lifeTime: 3
-  _coolDownTime: 2
+  _coolDownTime: 0
   _numberBulletPerShot: 3
   _maxAngle: 45
