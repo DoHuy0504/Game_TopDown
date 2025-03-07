@@ -1101,8 +1101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1176592192}
-  _maxTimeSpawn: 5
-  _minTimeSpawn: 2
+  _maxTimeSpawn: 8
+  _minTimeSpawn: 4
   _enemyPrefab: {fileID: 3195212437759611073, guid: 33caf8d3f0132da48a9e91e2e39b3501, type: 3}
 --- !u!114 &1947557044
 MonoBehaviour:
